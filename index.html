@@ -1,50 +1,214 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101318"><title>自己PR収録スタジオ・iPhone版</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101318">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PR収録">
+<title>自己PR収録スタジオ・iPhone版</title>
 <style>
-:root{color-scheme:dark;--bg:#101318;--panel:#1b2029;--line:#303846;--fg:#eef2f7;--muted:#aab4c2;--yellow:#f5c84b;--red:#e94b55;--green:#52c58e}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;padding:14px 14px calc(100px + env(safe-area-inset-bottom))}.wrap{max-width:850px;margin:auto;display:grid;gap:14px}.hint,.muted,.small{color:var(--muted)}.hint{text-align:center;font-size:12px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.prompter{height:34vh;min-height:230px;max-height:420px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#000;touch-action:manipulation}.track{position:absolute;left:0;right:0;top:0;padding:0 20px;will-change:transform}.track p{font-size:40px;line-height:1.55;font-weight:750;margin:0 0 .7em;white-space:pre-wrap}.guide{position:absolute;top:28%;left:0;right:0;border-top:1px dashed var(--yellow);opacity:.6;pointer-events:none}.fade{position:absolute;left:0;right:0;height:20%;pointer-events:none}.fade.top{top:0;background:linear-gradient(#000,transparent)}.fade.bottom{bottom:0;height:30%;background:linear-gradient(transparent,#000)}.studio{display:grid;gap:12px}.camera{position:relative;width:100%;max-width:600px;margin:auto;aspect-ratio:16/9;background:#050608;border-radius:10px;overflow:hidden}.camera.portrait{max-width:330px;aspect-ratio:9/16}.camera video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}.recbadge{position:absolute;top:10px;left:10px;background:#000b;border-radius:20px;padding:3px 10px;color:#fff;font-size:12px}.controls{display:grid;gap:12px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.seg button[aria-pressed=true]{background:var(--yellow);color:#111}.btn{border:1px solid var(--line);border-radius:9px;background:#29313e;color:var(--fg);padding:11px 14px;min-height:46px;font-weight:700;font-size:14px}.btn:disabled{opacity:.4}.btn.primary{background:var(--red);border-color:var(--red);color:white}.btn.stop{background:white;color:#111}.field{display:grid;grid-template-columns:6em 1fr 4em;gap:8px;align-items:center;font-size:13px}.field output{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--yellow);min-height:32px}.timer{font: bold 34px ui-monospace,monospace;font-variant-numeric:tabular-nums}.timer small{font:13px -apple-system,sans-serif;color:var(--muted)}textarea,select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0d1117;color:var(--fg);padding:12px;font:15px/1.7 inherit}textarea{min-height:150px}select{min-height:44px}.take{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;display:grid;gap:8px}.take video{width:100%;max-height:360px;background:#000;border-radius:8px}.save{display:inline-block;background:var(--green);color:#07150e;text-decoration:none;font-weight:800;padding:10px 14px;border-radius:8px;width:max-content}.bar{height:5px;background:#343b47;border-radius:9px;overflow:hidden}.bar span{display:block;height:100%;background:var(--green);width:0}.actions{position:fixed;z-index:5;bottom:0;left:0;right:0;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:#181c23f2;border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px}.actions .btn{min-height:54px}.status{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.warning{color:#ffd27a}.title{font-weight:800;margin:0 0 8px}.hidden{display:none!important}
+:root{color-scheme:dark;--bg:#101318;--panel:#1b2029;--line:#303846;--fg:#eef2f7;--muted:#aab4c2;--yellow:#f5c84b;--red:#e94b55;--green:#52c58e}
+*{box-sizing:border-box}
+[hidden],.hidden{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;padding:14px 14px calc(112px + env(safe-area-inset-bottom))}
+.wrap{max-width:900px;margin:auto;display:grid;gap:14px}
+.hint,.muted,.small{color:var(--muted)}.hint{text-align:center;font-size:12px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.prompter{height:34vh;min-height:230px;max-height:420px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#000;touch-action:manipulation;--fs:40px}
+.track{position:absolute;left:0;right:0;top:0;padding:0 20px;will-change:transform}
+.track p{font-size:var(--fs);line-height:1.55;font-weight:750;margin:0 0 .7em;white-space:pre-wrap;overflow-wrap:anywhere}
+.guide{position:absolute;top:28%;left:0;right:0;border-top:1px dashed var(--yellow);opacity:.65;pointer-events:none}
+.fade{position:absolute;left:0;right:0;pointer-events:none;z-index:1}
+.fade.top{top:0;height:12%;background:linear-gradient(#000,transparent)}
+.fade.bottom{bottom:0;height:22%;background:linear-gradient(transparent,#000)}
+/* 縦書き：黄色い読書枠の中を、文字が下から上へ通過する */
+.prompter.v{height:clamp(340px,55vh,620px)}
+.prompter.v .track{left:50%;right:auto;width:max-content;padding:0;writing-mode:vertical-rl;}
+.prompter.v .track p{margin:0;white-space:nowrap;overflow-wrap:normal;line-height:1.2;letter-spacing:.08em;width:max-content;height:max-content}
+.prompter.v .guide{display:none}
+.win{display:none;position:absolute;z-index:2;left:50%;top:var(--wy,24px);transform:translateX(-50%);width:calc(var(--fs)*1.9);height:var(--wh,180px);border:2px solid var(--yellow);border-radius:10px;pointer-events:none;box-shadow:0 0 0 999px rgba(0,0,0,.1)}
+.prompter.v .win{display:block}
+.prompter.v .fade.top{height:var(--wy,24px);background:rgba(0,0,0,.92)}
+.prompter.v .fade.bottom{top:calc(var(--wy,24px) + var(--wh,180px));bottom:0;height:auto;background:linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.92))}
+.tcy{text-combine-upright:all;-webkit-text-combine:horizontal}
+.brk{display:inline-block;inline-size:2em;text-align:center;color:var(--yellow)}
+.studio{display:grid;gap:12px}
+.camera{position:relative;width:100%;max-width:600px;margin:auto;aspect-ratio:16/9;background:#050608;border-radius:10px;overflow:hidden}
+.camera.portrait{max-width:330px;aspect-ratio:9/16}
+.camera video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.recbadge{position:absolute;top:10px;left:10px;background:#000b;border-radius:20px;padding:3px 10px;color:#fff;font-size:12px}
+.controls{display:grid;gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg button[aria-pressed=true]{background:var(--yellow);color:#111}
+.btn{border:1px solid var(--line);border-radius:9px;background:#29313e;color:var(--fg);padding:11px 14px;min-height:46px;font-weight:700;font-size:14px;touch-action:manipulation}
+.btn:disabled{opacity:.4}.btn.primary{background:var(--red);border-color:var(--red);color:white}.btn.stop{background:white;color:#111}
+.field{display:grid;grid-template-columns:6.2em 1fr 4.4em;gap:8px;align-items:center;font-size:13px}
+.field output{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--yellow);min-height:32px;touch-action:pan-y}
+.timer{font:bold 34px ui-monospace,monospace;font-variant-numeric:tabular-nums}.timer small{font:13px -apple-system,sans-serif;color:var(--muted)}
+.bar{height:5px;background:#343b47;border-radius:9px;overflow:hidden}.bar span{display:block;height:100%;background:var(--green);width:0}
+textarea,select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0d1117;color:var(--fg);padding:12px;font:15px/1.7 -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+textarea{min-height:150px}select{min-height:44px}
+.take{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;display:grid;gap:8px}.take video{width:100%;max-height:360px;background:#000;border-radius:8px}
+.save{display:inline-block;background:var(--green);color:#07150e;text-decoration:none;font-weight:800;padding:10px 14px;border-radius:8px;width:max-content;border:0}
+.barline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pace{font-size:13px;line-height:1.55;color:var(--muted);background:#111720;border:1px solid var(--line);border-radius:8px;padding:10px}
+.pace strong{color:var(--fg)}.pace .rate{display:inline-block;font-weight:800;border-radius:5px;padding:2px 7px;margin-right:6px;background:#354052;color:#fff}
+.pace .rate.good{background:#1b5c43;color:#d8ffea}.pace .rate.fast{background:#6d3535;color:#ffe0e0}.pace .rate.slow{background:#66501f;color:#ffedb7}
+.status{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.warning{color:#ffd27a}.title{font-weight:800;margin:0 0 8px}
+.actions{position:fixed;z-index:5;bottom:0;left:0;right:0;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:#181c23f2;border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px}
+.actions .btn{min-height:54px}
+@media(min-width:760px){.studio{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.camera{margin:0}}
+@media(max-width:420px){.field{grid-template-columns:5.4em 1fr 3.7em}.prompter{height:32vh}.prompter.v{height:48vh}.btn{padding-inline:10px}}
 </style>
-</head><body><main class="wrap">
-<div class="hint">カメラの近くに原稿を表示します。黄色い線付近を目安に読んでください。</div>
-<section id="prompter" class="prompter"><div id="track" class="track"><p>下の「原稿を編集」から原稿を入力してください。</p></div><div class="guide"></div><div class="fade top"></div><div class="fade bottom"></div></section>
-<section class="studio">
-<div id="camera" class="camera"><video id="preview" autoplay muted playsinline></video><div id="recbadge" class="recbadge hidden">● REC</div></div>
-<div class="panel controls">
-<div class="row seg"><button class="btn" id="land" aria-pressed="true">横動画 16:9</button><button class="btn" id="port" aria-pressed="false">縦動画 9:16</button></div>
-<div><div class="timer"><span id="elapsed">0:00</span> <small>/ 目標 <span id="goalText">1:00</span></small></div><div class="bar"><span id="progress"></span></div></div>
-<label class="field">流す速さ<input id="goal" type="range" min="40" max="120" value="60"><output id="goalOut">60秒</output></label>
-<label class="field">文字サイズ<input id="fontSize" type="range" min="22" max="64" step="2" value="40"><output id="fontOut">40px</output></label>
-<div><div class="small">マイク入力</div><select id="mic"><option value="">iPhoneの標準マイク（接続中のイヤホンマイクを含む）</option></select><div id="micStatus" class="status">iPhoneにイヤホンマイクを接続してから「入力を更新」を押してください。</div><button class="btn" id="refreshMic" type="button">入力を更新</button></div>
-<div class="row"><button class="btn" id="flip">カメラ切替</button><button class="btn" id="reset">最初へ</button></div>
-<div id="status" class="status">カメラとマイクの使用を許可してください。</div>
-</div></section>
-<section class="panel"><h3 class="title">原稿を編集</h3><textarea id="script" placeholder="ここに自己PRの原稿を貼り付けてください。段落ごとに改行できます。"></textarea><div class="small" id="chars">0字</div></section>
-<section class="panel"><h3 class="title">撮ったテイク</h3><div id="takes" class="small">まだ録画はありません。</div><p class="small warning">動画はこのページを閉じると消える場合があります。録画後、必ず「ビデオを保存」または「ファイルに保存」でiPhoneに保存してください。</p></section>
+</head>
+<body>
+<main class="wrap">
+  <div class="hint" id="hint">カメラの近くに原稿を表示します。黄色い線付近を目安に読んでください。</div>
+  <section id="prompter" class="prompter" aria-label="原稿表示">
+    <div id="track" class="track"><p>下の「原稿を編集」から原稿を入力してください。</p></div>
+    <div class="guide"></div><div class="win"></div>
+    <div class="fade top"></div><div class="fade bottom"></div>
+  </section>
+  <section class="studio">
+    <div id="camera" class="camera"><video id="preview" autoplay muted playsinline></video><div id="recbadge" class="recbadge hidden">● REC</div></div>
+    <div class="panel controls">
+      <div>
+        <div class="small">原稿の向き</div>
+        <div class="row seg"><button class="btn" id="horizontal" aria-pressed="true">横書き</button><button class="btn" id="vertical" aria-pressed="false">縦書き</button></div>
+      </div>
+      <div>
+        <div class="small">動画の向き</div>
+        <div class="row seg"><button class="btn" id="land" aria-pressed="true">横動画 16:9</button><button class="btn" id="port" aria-pressed="false">縦動画 9:16</button></div>
+      </div>
+      <div><div class="timer"><span id="elapsed">0:00</span> <small>/ 目標 <span id="goalText">1:00</span></small></div><div class="bar"><span id="progress"></span></div></div>
+      <label class="field">流す速さ<input id="goal" type="range" min="40" max="120" step="1" value="60"><output id="goalOut">60秒</output></label>
+      <label class="field">文字サイズ<input id="fontSize" type="range" min="22" max="64" step="2" value="40"><output id="fontOut">40px</output></label>
+      <label class="field hidden" id="readRangeField">読む範囲<input id="readRange" type="range" min="3" max="5" step="1" value="4"><output id="readRangeOut">4字</output></label>
+      <div id="pace" class="pace" aria-live="polite">原稿を入力すると、文字数と目安の読む速さを表示します。</div>
+      <div>
+        <div class="small">マイク入力</div>
+        <select id="mic"><option value="">iPhoneの標準入力（イヤホン接続時はiOSの選択に従う）</option></select>
+        <div id="micStatus" class="status">イヤホンマイクを接続してから「入力を更新」を押してください。</div>
+        <button class="btn" id="refreshMic" type="button">入力を更新</button>
+      </div>
+      <div class="row"><button class="btn" id="flip">カメラ切替</button><button class="btn" id="reset">最初へ</button></div>
+      <div id="status" class="status">カメラとマイクの使用を許可してください。</div>
+    </div>
+  </section>
+  <section class="panel"><h3 class="title">原稿を編集</h3><textarea id="script" placeholder="ここに自己PRの原稿を貼り付けてください。段落ごとに改行できます。"></textarea><div class="small" id="chars">0字</div></section>
+  <section class="panel"><h3 class="title">撮ったテイク</h3><div id="takes" class="small">まだ録画はありません。</div><p class="small warning">動画はページを閉じる前に「共有して保存」からiPhoneに保存してください。</p></section>
 </main>
 <div class="actions"><button class="btn primary" id="record" disabled>● 録画開始</button><button class="btn" id="practice">練習</button><button class="btn" id="pause" disabled>一時停止</button></div>
 <script>
 (()=>{
-const $=id=>document.getElementById(id);const video=$('preview');let stream=null,recorder=null,chunks=[],raf=0,last=0,elapsed=0,mode='idle',pos=0,goal=60,portrait=false,facing='user',takeNo=0,selectedMic='';
-const store={get(k,d){try{return localStorage.getItem('priphone_'+k)??d}catch(e){return d}},set(k,v){try{localStorage.setItem('priphone_'+k,v)}catch(e){}}};
-$('script').value=store.get('script','');$('goal').value=store.get('goal','60');$('fontSize').value=store.get('font','40');goal=+$('goal').value;
-function fmt(s){let m=Math.floor(s/60),r=Math.floor(s%60);return m+':'+String(r).padStart(2,'0')}
-function updateGoal(){goal=+$('goal').value;$('goalOut').textContent=goal+'秒';$('goalText').textContent=fmt(goal);store.set('goal',goal)}
-function render(){let text=$('script').value;let lines=text.split(/\n+/).map(x=>x.trim()).filter(Boolean);$('track').innerHTML='';if(!lines.length)lines=['原稿を編集から入力してください'];for(const line of lines){let p=document.createElement('p');p.textContent=line;$('track').append(p)}$('chars').textContent=text.replace(/\s/g,'').length+'字';store.set('script',text);applyPos()}
-function applyPos(){let t=$('track'),max=Math.max(0,t.scrollHeight-$('prompter').clientHeight*.72);t.style.transform=`translateY(${-pos*max}px)`}
-function reset(){elapsed=0;pos=0;$('elapsed').textContent='0:00';$('progress').style.width='0%';applyPos()}
-function tick(now){let dt=Math.min(.1,(now-last)/1000||0);last=now;if(mode==='practice'||mode==='rec'){elapsed+=dt;pos=Math.min(1,elapsed/goal);$('elapsed').textContent=fmt(elapsed);$('progress').style.width=Math.min(100,elapsed/goal*100)+'%';applyPos()}raf=requestAnimationFrame(tick)}
-function sync(){ $('record').disabled=!stream||mode==='practice'||mode==='paused';$('record').textContent=mode==='rec'?'■ 録画停止':'● 録画開始';$('record').classList.toggle('stop',mode==='rec');$('practice').textContent=mode==='practice'?'練習停止':'練習';$('pause').disabled=!(mode==='practice'||mode==='paused');$('pause').textContent=mode==='paused'?'再開':'一時停止';$('recbadge').classList.toggle('hidden',mode!=='rec') }
-async function countdown(){mode='countdown';sync();let c=document.createElement('div');c.style.cssText='position:fixed;inset:0;display:grid;place-items:center;background:#000b;font-size:100px;color:#f5c84b;z-index:20';document.body.append(c);for(let n=3;n>0;n--){c.textContent=n;await new Promise(r=>setTimeout(r,800))}c.remove()}
-async function startCamera(){try{let audio=selectedMic?{deviceId:{exact:selectedMic},echoCancellation:true,noiseSuppression:true}:{echoCancellation:true,noiseSuppression:true};const session=navigator.audioSession;if(session&&'type'in session){try{session.type='auto'}catch(e){}}stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1920},height:{ideal:1080}},audio});if(session&&'type'in session){try{session.type='play-and-record'}catch(e){}}video.srcObject=stream;await video.play();$('status').textContent='カメラ・マイク使用中。録画できます。イヤホン接続時の入力はiOSの音声ルーティングに従います。';$('record').disabled=false;await refreshMics()}catch(e){$('status').textContent='カメラ／マイクを開始できません：'+e.message;stream=null;$('record').disabled=true}}
-async function refreshMics(){try{let devices=await navigator.mediaDevices.enumerateDevices(),inputs=devices.filter(d=>d.kind==='audioinput'),sel=$('mic'),old=selectedMic;sel.innerHTML='<option value="">iPhoneの標準入力（イヤホン接続時はiOSの選択に従う）</option>';for(let d of inputs){let o=document.createElement('option');o.value=d.deviceId;o.textContent=d.label||'マイク '+(sel.length);sel.append(o)}if(old&&[...sel.options].some(o=>o.value===old))sel.value=old;$('micStatus').textContent=inputs.length+'個の音声入力を検出。イヤホンマイクが表示されない場合は標準入力を選んでください。'}catch(e){$('micStatus').textContent='マイク一覧を取得できません。標準入力を使用します。'}}
-function stopTracks(s){s?.getTracks().forEach(t=>t.stop())}
-async function startRecording(){if(!stream||mode!=='idle')return;reset();await countdown();try{chunks=[];let options={};let types=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp8,opus','video/webm'];let type=types.find(t=>MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t));if(type)options.mimeType=type;options.videoBitsPerSecond=4500000;recorder=new MediaRecorder(stream,options);recorder.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};recorder.onerror=e=>{$('status').textContent='録画エラー：'+(e.error?.message||'不明なエラー')};recorder.onstop=saveTake;recorder.start(1000);mode='rec';sync();$('status').textContent='録画中です。録画停止を押すとテイクに追加されます。'}catch(e){mode='idle';sync();$('status').textContent='録画を開始できません：'+e.message}}
-function saveTake(){let type=recorder?.mimeType||chunks[0]?.type||'video/mp4',blob=new Blob(chunks,{type}),url=URL.createObjectURL(blob),ext=type.includes('mp4')?'mp4':'webm';takeNo++;let box=document.createElement('div');box.className='take';let v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;let label=document.createElement('b');label.textContent='テイク '+takeNo+'（'+fmt(elapsed)+'）';let a=document.createElement('a');a.className='save';a.href=url;a.download='自己PR_テイク'+takeNo+'.'+ext;a.textContent='動画を保存（.'+ext+'）';let share=document.createElement('button');share.className='btn';share.textContent='共有して写真／ファイルに保存';share.onclick=async()=>{try{let file=new File([blob],'自己PR_テイク'+takeNo+'.'+ext,{type});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'自己PR動画'});}else{a.click();}}catch(e){if(e.name!=='AbortError')$('status').textContent='共有できませんでした。下の保存リンクをお試しください。'}};let note=document.createElement('div');note.className='small';note.textContent='iPhoneでは「共有して写真／ファイルに保存」を押すと保存先を選べます。';box.append(label,v,share,a,note);if(takeNo===1)$('takes').innerHTML='';$('takes').prepend(box);$('status').textContent='録画をテイクに追加しました。動画をiPhoneに保存してください。';chunks=[];}
-function stopRecording(){if(mode!=='rec'||!recorder)return;recorder.stop();mode='idle';sync()}
-$('record').onclick=()=>mode==='rec'?stopRecording():startRecording();$('practice').onclick=async()=>{if(mode==='practice'||mode==='paused'){mode='idle';sync();return}if(mode==='idle'){reset();await countdown();mode='practice';sync()}};$('pause').onclick=()=>{mode=mode==='paused'?'practice':'paused';sync()};$('reset').onclick=()=>{if(mode==='rec')return;mode='idle';reset();sync()};$('goal').oninput=()=>{updateGoal()};$('fontSize').oninput=()=>{$('track').style.setProperty('--unused','');document.querySelectorAll('.track p').forEach(p=>p.style.fontSize=$('fontSize').value+'px');$('fontOut').textContent=$('fontSize').value+'px';store.set('font',$('fontSize').value);applyPos()};$('script').oninput=render;
-$('land').onclick=()=>{portrait=false;$('camera').classList.remove('portrait');$('land').setAttribute('aria-pressed','true');$('port').setAttribute('aria-pressed','false')};$('port').onclick=()=>{portrait=true;$('camera').classList.add('portrait');$('land').setAttribute('aria-pressed','false');$('port').setAttribute('aria-pressed','true')};$('flip').onclick=async()=>{if(mode==='rec')return;facing=facing==='user'?'environment':'user';stopTracks(stream);stream=null;await startCamera()};$('refreshMic').onclick=refreshMics;$('mic').onchange=async()=>{selectedMic=$('mic').value;if(mode==='rec')return;stopTracks(stream);stream=null;await startCamera()};
-$('goal').value=store.get('goal','60');$('fontSize').value=store.get('font','40');$('track').style.setProperty('--unused','');document.querySelectorAll('.track p').forEach(p=>p.style.fontSize=$('fontSize').value+'px');$('fontOut').textContent=$('fontSize').value+'px';updateGoal();render();last=performance.now();raf=requestAnimationFrame(tick);if(navigator.mediaDevices?.addEventListener)navigator.mediaDevices.addEventListener('devicechange',refreshMics);startCamera();window.addEventListener('beforeunload',()=>{cancelAnimationFrame(raf);stopTracks(stream)});
+  const $=id=>document.getElementById(id);
+  const store={get(k,d){try{return localStorage.getItem('priphone_'+k)??d}catch(e){return d}},set(k,v){try{localStorage.setItem('priphone_'+k,v)}catch(e){}}};
+  const video=$('preview'),prompter=$('prompter'),track=$('track');
+  let stream=null,recorder=null,chunks=[],elapsed=0,pos=0,goal=60,size=40,readWindow=4,mode='idle',last=0,raf=0,portrait=false,facing='user',vertical=false,selectedMic='',takeNo=0;
+  $('script').value=store.get('script','');$('goal').value=store.get('goal','60');$('fontSize').value=store.get('font','40');$('readRange').value=store.get('readRange','4');goal=+$('goal').value;size=+$('fontSize').value;readWindow=+$('readRange').value;vertical=store.get('vertical','0')==='1';
+  function fmt(s){const m=Math.floor(s/60),r=Math.floor(s%60);return m+':'+String(r).padStart(2,'0')}
+  function countChars(){return Array.from($('script').value.replace(/\s/g,'')).length}
+  function updatePace(){
+    const n=countChars(),perMin=goal>0?Math.round(n/goal*60):0;
+    $('chars').textContent=n+'字（スペース・改行を除く）';
+    $('goalOut').textContent=goal+'秒';$('goalText').textContent=fmt(goal);
+    if(!n){$('pace').textContent='原稿を入力すると、文字数と目安の読む速さを表示します。';return}
+    let label,cls,advice;
+    if(perMin>330){label='速め';cls='fast';advice='少し早口になりそうです。目標時間を長くするか、原稿を短くすると読みやすくなります。'}
+    else if(perMin>=260){label='ちょうどよい';cls='good';advice='聞き取りやすいペースの目安です。'}
+    else if(perMin>=220){label='少しゆっくり';cls='slow';advice='少しゆっくりめです。落ち着いて伝えたい場合に向いています。'}
+    else{label='ゆっくり';cls='slow';advice='ゆったりしたペースです。間を取りながら話す場合に向いています。'}
+    $('pace').innerHTML=`<span class="rate ${cls}">${label}</span><strong>${n}字 / ${goal}秒</strong><br>この設定では1分あたり約<strong>${perMin}字</strong>。${advice}`;
+  }
+  function escapeHtml(t){return t.replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])).replace(/(^|[^0-9０-９])([0-9]{1,2})(?![0-9])/g,'$1<span class="tcy">$2</span>')}
+  function renderScript(){
+    const text=$('script').value,paras=text.split(/\n\s*\n|\n/).map(x=>x.trim()).filter(Boolean);track.innerHTML='';
+    if(vertical&&paras.length){const p=document.createElement('p');p.innerHTML=paras.map(escapeHtml).join('<span class="brk" aria-hidden="true">・</span>');track.append(p)}
+    else if(paras.length){for(const line of paras){const p=document.createElement('p');p.innerHTML=escapeHtml(line);track.append(p)}}
+    else{const p=document.createElement('p');p.style.color='#77818e';p.textContent='下の「原稿を編集」から原稿を入力してください。';track.append(p)}
+    store.set('script',text);updatePace();layoutPrompter();
+  }
+  function layoutPrompter(){
+    prompter.classList.toggle('v',vertical);prompter.style.setProperty('--fs',size+'px');
+    $('horizontal').setAttribute('aria-pressed',String(!vertical));$('vertical').setAttribute('aria-pressed',String(vertical));
+    $('readRangeField').classList.toggle('hidden',!vertical);$('readRangeOut').textContent=readWindow+'字';
+    $('hint').innerHTML=vertical?'カメラの近くに原稿を表示します。黄色い枠の中を上から下へ読んでください。文字は下から上へ流れます。':'カメラの近くに原稿を表示します。黄色い線に最初の行が来るように配置します。';
+    const h=prompter.clientHeight;
+    if(vertical){
+      const wy=Math.max(14,Math.round(h*.05));const wh=Math.round(readWindow*size*1.2);
+      prompter.style.setProperty('--wy',wy+'px');prompter.style.setProperty('--wh',wh+'px');
+      track.style.left='50%';track.style.right='auto';track.style.width='max-content';track.style.top=wy+'px';track.style.padding='0';
+    }else{
+      prompter.style.removeProperty('--wy');prompter.style.removeProperty('--wh');
+      track.style.left='0';track.style.right='0';track.style.width='auto';track.style.top='0';
+      track.style.paddingLeft='20px';track.style.paddingRight='20px';
+      const lineHeight=size*1.55;const guideY=h*.28;
+      track.style.paddingTop=Math.max(0,guideY-lineHeight/2)+'px';track.style.paddingBottom=h+'px';
+    }
+    applyPos();
+  }
+  function applyPos(){
+    const first=track.firstElementChild;if(!first)return;
+    if(vertical){
+      const wh=parseFloat(getComputedStyle(prompter).getPropertyValue('--wh'))||readWindow*size*1.2;
+      const distance=Math.max(0,first.offsetHeight-wh);
+      track.style.transform=`translate(-50%, ${-pos*distance}px)`;
+    }else{
+      const lastP=track.lastElementChild;const guideY=prompter.clientHeight*.28;const lineHeight=size*1.55;
+      // 最終行が黄色いガイド位置に来るまで移動。冒頭は最初の行の中央をガイドに合わせる。
+      const distance=Math.max(0,lastP.offsetTop+lastP.offsetHeight-lineHeight/2-guideY);
+      track.style.transform=`translateY(${-pos*distance}px)`;
+    }
+  }
+  function resetRun(){elapsed=0;pos=0;$('elapsed').textContent='0:00';$('progress').style.width='0%';applyPos()}
+  function tick(now){const dt=Math.min(.1,(now-last)/1000||0);last=now;if(mode==='practice'||mode==='rec'){elapsed+=dt;pos=Math.min(1,elapsed/goal);$('elapsed').textContent=fmt(elapsed);$('progress').style.width=Math.min(100,elapsed/goal*100)+'%';applyPos()}raf=requestAnimationFrame(tick)}
+  function sync(){
+    $('record').disabled=!stream||mode==='practice'||mode==='paused'||mode==='countdown';$('record').textContent=mode==='rec'?'■ 録画停止':'● 録画開始';$('record').classList.toggle('stop',mode==='rec');
+    $('practice').textContent=mode==='practice'?'練習停止':mode==='paused'?'練習再開':'練習';$('pause').disabled=!(mode==='practice'||mode==='paused');$('pause').textContent=mode==='paused'?'再開':'一時停止';
+    $('recbadge').classList.toggle('hidden',mode!=='rec');
+    for(const id of ['horizontal','vertical','land','port','flip','goal','fontSize','readRange'])$(id).disabled=mode==='rec'||mode==='countdown';
+  }
+  async function countdown(){mode='countdown';sync();const c=document.createElement('div');c.style.cssText='position:fixed;inset:0;display:grid;place-items:center;background:#000b;font-size:100px;color:#f5c84b;z-index:20';document.body.append(c);for(let n=3;n>0;n--){c.textContent=n;await new Promise(r=>setTimeout(r,800))}c.remove()}
+  function stopTracks(s){s?.getTracks().forEach(t=>t.stop())}
+  async function refreshMics(){try{const ds=await navigator.mediaDevices.enumerateDevices(),inputs=ds.filter(d=>d.kind==='audioinput'),sel=$('mic'),old=selectedMic;sel.innerHTML='<option value="">iPhoneの標準入力（イヤホン接続時はiOSの選択に従う）</option>';for(const d of inputs){const o=document.createElement('option');o.value=d.deviceId;o.textContent=d.label||`マイク入力 ${sel.length}`;sel.append(o)}if(old&&[...sel.options].some(o=>o.value===old))sel.value=old;$('micStatus').textContent=inputs.length+'個の音声入力を検出しました。イヤホンマイクが表示されない場合は標準入力を使い、iOSの音声入力先に従います。'}catch(e){$('micStatus').textContent='マイク一覧を取得できません。iPhoneの標準入力を使用します。'}}
+  async function startCamera(){
+    try{
+      const audio=selectedMic?{deviceId:{exact:selectedMic},echoCancellation:true,noiseSuppression:true}:{echoCancellation:true,noiseSuppression:true};
+      const session=navigator.audioSession;if(session&&'type'in session){try{session.type='auto'}catch(e){}}
+      stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1920},height:{ideal:1080}},audio});video.srcObject=stream;await video.play();
+      if(session&&'type'in session){try{session.type='play-and-record'}catch(e){}}
+      $('status').textContent='カメラ・マイクを使用できます。イヤホンマイク接続時は、iPhone／Safariが選択した入力が使われます。';await refreshMics();$('record').disabled=!window.MediaRecorder;
+      if(!window.MediaRecorder)$('status').textContent='このSafariではMediaRecorderが利用できません。';
+    }catch(e){stream=null;$('record').disabled=true;$('status').textContent='カメラ／マイクを開始できません：'+e.message}
+    sync();
+  }
+  async function restartCamera(){stopTracks(stream);stream=null;video.srcObject=null;await startCamera()}
+  function pickMime(){const types=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp8,opus','video/webm'];return types.find(t=>{try{return MediaRecorder.isTypeSupported(t)}catch(e){return false}})||''}
+  async function startRecording(){if(!stream||mode!=='idle')return;resetRun();await countdown();try{chunks=[];const mime=pickMime(),opts={videoBitsPerSecond:4500000};if(mime)opts.mimeType=mime;recorder=new MediaRecorder(stream,opts);recorder.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};recorder.onerror=e=>{$('status').textContent='録画エラー：'+(e.error?.message||'不明なエラー')};recorder.onstop=saveTake;recorder.start(1000);mode='rec';sync();$('status').textContent='録画中です。停止すると撮ったテイクに追加されます。'}catch(e){mode='idle';sync();$('status').textContent='録画を開始できません：'+e.message}}
+  function saveTake(){const type=recorder?.mimeType||chunks[0]?.type||'video/mp4',blob=new Blob(chunks,{type}),url=URL.createObjectURL(blob),ext=type.includes('mp4')?'mp4':'webm';takeNo++;const box=document.createElement('div');box.className='take';const v=document.createElement('video');v.src=url;v.controls=true;v.playsInline=true;const title=document.createElement('strong');title.textContent=`テイク ${takeNo}（${fmt(elapsed)}）`;const a=document.createElement('a');a.className='save';a.href=url;a.download=`自己PR_テイク${takeNo}.${ext}`;a.textContent=`動画をダウンロード（.${ext}）`;const share=document.createElement('button');share.className='btn';share.textContent='共有して写真／ファイルに保存';share.onclick=async()=>{try{const file=new File([blob],`自己PR_テイク${takeNo}.${ext}`,{type});if(navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file],title:'自己PR動画'});else a.click()}catch(e){if(e.name!=='AbortError')$('status').textContent='共有できませんでした。ダウンロードリンクをお試しください。'}};const note=document.createElement('div');note.className='small';note.textContent='動画を確認し、ページを閉じる前にiPhoneへ保存してください。';box.append(title,v,share,a,note);if(takeNo===1)$('takes').innerHTML='';$('takes').prepend(box);$('status').textContent='録画をテイクに追加しました。iPhoneに保存してください。';chunks=[];recorder=null;}
+  function stopRecording(){if(mode!=='rec'||!recorder)return;mode='idle';sync();recorder.stop()}
+  $('record').onclick=()=>mode==='rec'?stopRecording():startRecording();
+  $('practice').onclick=async()=>{if(mode==='practice'){mode='paused';sync();return}if(mode==='paused'){mode='practice';sync();return}if(mode==='idle'){if(pos>=1)resetRun();await countdown();mode='practice';sync()}};
+  $('pause').onclick=()=>{mode=mode==='paused'?'practice':'paused';sync()};
+  $('reset').onclick=()=>{if(mode==='rec'||mode==='countdown')return;mode='idle';resetRun();sync()};
+  $('goal').oninput=()=>{goal=+$('goal').value;store.set('goal',goal);updatePace()};
+  $('fontSize').oninput=()=>{size=+$('fontSize').value;store.set('font',size);layoutPrompter()};
+  $('readRange').oninput=()=>{readWindow=+$('readRange').value;store.set('readRange',readWindow);layoutPrompter()};
+  $('script').oninput=renderScript;
+  $('horizontal').onclick=()=>{vertical=false;store.set('vertical','0');pos=0;renderScript()};
+  $('vertical').onclick=()=>{vertical=true;store.set('vertical','1');pos=0;renderScript()};
+  $('land').onclick=()=>{portrait=false;$('camera').classList.remove('portrait');$('land').setAttribute('aria-pressed','true');$('port').setAttribute('aria-pressed','false')};
+  $('port').onclick=()=>{portrait=true;$('camera').classList.add('portrait');$('land').setAttribute('aria-pressed','false');$('port').setAttribute('aria-pressed','true')};
+  $('flip').onclick=async()=>{if(mode==='rec')return;facing=facing==='user'?'environment':'user';await restartCamera()};
+  $('refreshMic').onclick=refreshMics;
+  $('mic').onchange=async()=>{selectedMic=$('mic').value;if(mode!=='rec')await restartCamera()};
+  if(navigator.mediaDevices?.addEventListener)navigator.mediaDevices.addEventListener('devicechange',refreshMics);
+  window.addEventListener('resize',()=>layoutPrompter());
+  window.addEventListener('beforeunload',()=>{cancelAnimationFrame(raf);stopTracks(stream)});
+  updatePace();renderScript();last=performance.now();raf=requestAnimationFrame(tick);startCamera();
 })();
-</script></body></html>
+</script>
+</body>
+</html>
